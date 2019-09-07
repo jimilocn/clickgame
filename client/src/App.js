@@ -4,6 +4,7 @@ import React, {
 import FriendCard from "./components/FriendCard";
 import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
+import Jumbotron from "./components/Jumbotron";
 import friends from "./friends.json";
 
 class App extends Component {
@@ -19,17 +20,8 @@ class App extends Component {
     // Filter this.state.friends for friends with an id not equal to the id being removed
     const friends = this.state.friends.map(friend => friend.id !== id);
     // Set this.state.friends equal to the new friends array
-    if (this.state.clicked.includes(id)) {
+    if (!this.state.clicked.includes(id)) {
 
-      this.setState({
-        score:0,
-        clicked:[],
-      })
-
-     alert("you already picked this one")
-
-    
-    } else {
 
       this.state.clicked.push(id);
       let score = this.state.score;
@@ -39,22 +31,31 @@ class App extends Component {
       
       
 
-    this.setState({
+      this.setState({
       friends: this.state.friends.sort(()=> Math.random()-0.5),
       score:score,
       highestscore:topScore,
       clicked:this.state.clicked,
-  })
-  
+      })
+      return friends;
+    
+    } else {
 
-  }
+  
+      this.setState({
+        score:0,
+        clicked:[],
+      })
+
+    alert("you already picked this one")
+    }
 };
 
   // Map over this.state.friends and render a FriendCard component for each friend object
   render() {
     return ( 
     <Wrapper >
-      <Title > Pick from my Garden</Title>
+      <Jumbotron ></Jumbotron>
       <Title >number of flowers picked for this trip to the garden {this.state.score}</Title> 
       <Title >the biggest bouquet youve ever picked{this.state.highestscore}</Title> 
       {this.state.friends.map(friend => ( <FriendCard 
