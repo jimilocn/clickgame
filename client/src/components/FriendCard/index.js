@@ -5,12 +5,8 @@ function FriendCard(props) {
   return (
     <div className="image">
       <div className="img-box">
-        <img alt={props.name} src={props.image} />
+        <img alt={props.id} src={props.image} clicked={props.clicked} onClick={() => props.removeFriend(props.id)} />
       </div>
-      
-      <span onClick={() => props.removeFriend(props.id)} className="remove">
-        𝘅
-      </span>
     </div>
   );
 }

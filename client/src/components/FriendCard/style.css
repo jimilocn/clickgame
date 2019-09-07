@@ -1,10 +1,10 @@
 .image {
   background:black;
   border-radius: 2px;
-  height: 325px;
-  margin: 1rem;
+  height:180px;
+  margin: .5rem;
   position: relative;
-  width: 325px;
+  width: 180px;
   box-shadow: 0 3px 6px rgb(61, 61, 61), 0 3px 6px rgb(61, 61, 61);
   text-align: left;
 }
