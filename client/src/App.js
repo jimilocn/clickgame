@@ -5,6 +5,8 @@ import FriendCard from "./components/FriendCard";
 import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
 import Jumbotron from "./components/Jumbotron";
+import ModalLoss from "./components/ModalLoss";
+
 import friends from "./friends.json";
 
 class App extends Component {
@@ -14,7 +16,10 @@ class App extends Component {
     clicked:[],
     score:0,
     highestscore:0,
+    gameOver:false,
   };
+
+
 
   removeFriend = id => {
     // Filter this.state.friends for friends with an id not equal to the id being removed
@@ -45,19 +50,30 @@ class App extends Component {
       this.setState({
         score:0,
         clicked:[],
+        gameOver:true
       })
 
-    alert("you already picked this one")
+    // alert("you already picked this one")
+
+
+
+    
     }
 };
+
+closeModal= id => {
+  this.setState({
+    gameOver:false
+  })
+}
 
   // Map over this.state.friends and render a FriendCard component for each friend object
   render() {
     return ( 
     <Wrapper >
       <Jumbotron ></Jumbotron>
-      <Title >number of flowers picked for this trip to the garden {this.state.score}</Title> 
-      <Title >the biggest bouquet youve ever picked{this.state.highestscore}</Title> 
+      <Title >Flowers in current bouquet: {this.state.score}</Title> 
+      <Title >Biggest bouquet you've picked: {this.state.highestscore}</Title> 
       {this.state.friends.map(friend => ( <FriendCard 
           removeFriend = {this.removeFriend}
           id = {friend.id}
@@ -67,6 +83,7 @@ class App extends Component {
           />
         ))
       } 
+      {this.state.gameOver && <ModalLoss closeModal = {this.closeModal} gameOver = {this.state.gameOver}/>}
     </Wrapper>
     );
   }

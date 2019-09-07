@@ -1,6 +1,6 @@
 .image {
   background:black;
-  border-radius: 2px;
+  border-radius: 40px;
   height:180px;
   margin: .5rem;
   position: relative;
@@ -14,9 +14,11 @@
   overflow: hidden;
   text-align: center;
 
+
 }
 .image > .img-box > img {
   width: 100%;
+  border-radius: 40px;
 
 }
 
